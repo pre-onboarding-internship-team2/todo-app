@@ -4,7 +4,7 @@ import { info } from "../components/auth/types";
 import { validation } from "../components/auth/validation";
 import { AuthTemplete } from "../components/common/AuthTemplete";
 
-export const SignInPage = () => {
+export const SignUpPage = () => {
   const [userInfo, setUserInfo] = useState<info>({ email: "", password: "" });
   const [isUserInfo, setIsUserInfo] = useState<boolean>(false);
   const location = useLocation();
