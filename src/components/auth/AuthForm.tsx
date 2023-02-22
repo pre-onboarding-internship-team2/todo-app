@@ -1,22 +1,25 @@
-import { useState } from "react";
-import ShareInput from "@components/common/ShareInput";
-import ShareBtn from "@components/common/ShareBtn";
+import ShareBtn from "components/common/ShareBtn";
+import ShareInput from "components/common/ShareInput";
+import useInput from "hooks/useInput";
 
 type AuthFormProps = {
   isLogin: boolean;
 };
 
 const AuthForm = ({ isLogin }: AuthFormProps) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { value: email, changeHandler: emailChangeHandler } = useInput("");
+  const { value: password, changeHandler: passwordChangeHandler } =
+    useInput("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
 
-  const emailChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
+  // const emailChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setEmail(e.target.value);
+  // };
 
-  const passwordChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
+  // const passwordChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setPassword(e.target.value);
+  // };
 
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

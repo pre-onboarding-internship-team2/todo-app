@@ -1,8 +1,8 @@
-import Layout from "@components/common/Layout";
-import NotFound from "@pages/NotFound";
-import SigninPage from "@pages/SigninPage";
-import SignupPage from "@pages/SignupPage";
-import TodoPage from "@pages/TodoPage";
+import Layout from "components/common/Layout";
+import NotFound from "pages/NotFound";
+import SigninPage from "pages/SigninPage";
+import SignupPage from "pages/SignupPage";
+import TodoPage from "pages/TodoPage";
 import { useRoutes, Navigate } from "react-router-dom";
 
 function App() {
