@@ -3,11 +3,25 @@ type ShareInputProps = {
   testid: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
+  placeholder: string;
 };
 
-const ShareInput = ({ type, testid, onChange, value }: ShareInputProps) => {
+const ShareInput = ({
+  type,
+  testid,
+  onChange,
+  value,
+  placeholder,
+}: ShareInputProps) => {
   return (
-    <input type={type} data-testid={testid} onChange={onChange} value={value} />
+    <input
+      className="border-2"
+      type={type}
+      data-testid={testid}
+      onChange={onChange}
+      value={value}
+      placeholder={placeholder}
+    />
   );
 };
 

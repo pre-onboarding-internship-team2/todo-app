@@ -7,8 +7,12 @@ interface ShareBtnProps extends ButtonTypes {
   text: string;
 }
 
-const ShareBtn = ({ type, text }: ShareBtnProps) => {
-  return <button type={type}>{text}</button>;
+const ShareBtn = ({ disabled, type, text }: ShareBtnProps) => {
+  return (
+    <button className={`border`} type={type}>
+      {text}
+    </button>
+  );
 };
 
 export default ShareBtn;
