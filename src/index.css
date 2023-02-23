@@ -1,5 +1,8 @@
 body {
     background: #e9ecef;
+      font-family:  'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
 }
 
 input {

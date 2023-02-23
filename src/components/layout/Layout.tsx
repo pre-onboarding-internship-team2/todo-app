@@ -18,7 +18,7 @@ const Home = () => {
     return (
         <>
             <div className="flex flex-col justify-center items-center place-items-center h-screen">
-                <h1 className="mb-5 text-xl">My To Do</h1>
+                <h1 className="font-semibold mb-5 text-xl">My To Do</h1>
                     {!auth.authInfo ? (
                         <>
                             <button className="my-0.5 w-60 text-base py-2 bg-green-300 text-white rounded-2xl">
