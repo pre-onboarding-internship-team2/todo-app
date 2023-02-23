@@ -44,9 +44,7 @@ function App() {
           <Route 
             path="/" 
             element={
-            <PublicRoute>
               <Layout/>
-            </PublicRoute> 
           } />
         </Routes>
       </AuthProvider>
@@ -61,7 +59,6 @@ function PrivateRoute({ children }: { children: JSX.Element }) {
 
 function PublicRoute({ children }: { children: JSX.Element }) {
   const auth = useAuth();
-  console.log(auth);
   return <>{auth.authInfo ? <Navigate to="/todo" replace /> : children}</>;
 }
 
