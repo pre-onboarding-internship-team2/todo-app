@@ -3,7 +3,7 @@ import { Outlet } from "react-router";
 
 const Layout = () => {
   return (
-    <div className="container flex flex-col items-center justify-center">
+    <div className="container m-auto flex h-screen w-screen flex-col items-center justify-center">
       <Outlet />
     </div>
   );
