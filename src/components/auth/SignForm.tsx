@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import { signUpInstance, signInInstance } from 'apis/auth/authApi';
 import CommonInput from 'components/common/CommonInput'
 import CommonButton from 'components/common/CommonButton'
+import AuthContext from 'context/auth/AuthContext'
 
 type AuthProps = {
   pageType: string
@@ -10,6 +11,8 @@ type AuthProps = {
 
 const SignForm : React.FC<AuthProps> = ( {pageType} ) => {
   const navigate = useNavigate();
+  const { saveToken } = useContext(AuthContext);
+
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [disabled, setDisabled] = useState<boolean>(false);
@@ -24,7 +27,7 @@ const SignForm : React.FC<AuthProps> = ( {pageType} ) => {
     if(pageType === 'signin'){
       signInInstance(email, password)
         .then((res) => {
-          localStorage.setItem("ACCESS_TOKEN", res.data.access_token)
+          saveToken(res.data.access_token)
           navigate("/todo");
           setErrorMsg('');
         })
