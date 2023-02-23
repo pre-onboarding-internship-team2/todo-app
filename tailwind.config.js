@@ -6,6 +6,8 @@ module.exports = {
       sm: '0.8rem',
       base: '1rem',
       xl: '1.563rem',
+      xl2: '2rem',
+      xl3: '4rem'
     },
     extend: {
       colors: {
@@ -15,6 +17,10 @@ module.exports = {
         },
         gray: '#A8A29E',
         red: '#EF4444',
+      },
+      fontFamily: {
+        sans: ['Poppins', 'Arial', 'sans-serif'],
+        tilt: ['Tilt Warp']
       }
     },
   },
