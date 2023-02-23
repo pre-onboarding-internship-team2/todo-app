@@ -2,6 +2,7 @@ import { createContext, useState, useEffect, ReactNode, useContext } from "react
 import { AxiosError } from 'axios';
 import { signUpApi, signInApi } from "../apis/auth/auth";
 import { AuthRequestProps } from "../apis/auth/auth.types";
+import { callbackify } from "util";
 
 interface AuthContextProps {
     authInfo: string;
@@ -19,8 +20,9 @@ export function AuthProvider({ children } : { children: ReactNode}) {
         setAuthInfo(localStorage.getItem("access_token" )!);
     }, []);
 
-    const signUp : AuthContextProps["signUp"] = (data) => {
+    const signUp : AuthContextProps["signUp"] = (data, callback) => {
         signUpApi(data).then((res) => {
+            callback();
             return { accessToken: res.data.access_token };
         })
         .catch((err: AxiosError) => {
@@ -38,10 +40,11 @@ export function AuthProvider({ children } : { children: ReactNode}) {
         });
     };
 
-    const signIn : AuthContextProps["signIn"] = (data) => {
+    const signIn : AuthContextProps["signIn"] = (data, callback) => {
         signInApi(data)
         .then((res) => {
             localStorage.setItem("access_token", res.data.access_token);
+            callback();
             return { accessToken: res.data.access_token };
         })
         .catch((err: AxiosError) => {
