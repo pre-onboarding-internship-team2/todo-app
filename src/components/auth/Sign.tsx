@@ -14,13 +14,13 @@ function Sign({submitAction, submitCallback} : {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("submit");
+        
         submitAction({email, password}, submitCallback);
     };
 
     useEffect(()=> {
         const { valid, message } = SignValidation({email, password});
-        console.log(valid, message);
+
         setValidMsg((msg)=> {
             return {
                 email: message.email,
