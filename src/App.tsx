@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate, useRoutes } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./context/auth";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -7,55 +7,19 @@ import NotFound from "./pages/NotFound";
 import Layout from "./components/layout/Layout";
 
 function App() {
-
-  return (
+    const { authInfo } = useAuth();
+    return (
       <Routes>
-        <Route 
-          path="/signup" 
-          element={
-          <PublicRoute>
-            <SignUp/>
-          </PublicRoute> 
-        } />
-        <Route 
-          path="/signin" 
-          element={
-          <PublicRoute>
-            <SignIn/>
-          </PublicRoute> 
-        } />
-        <Route 
-          path="/todo" 
-          element={
-          <PrivateRoute>
-            <Todo/>
-          </PrivateRoute> 
-        } />
-        <Route 
-          path="/*" 
-          element={
-          <PublicRoute>
-            <NotFound/>
-          </PublicRoute> 
-        } />
-        <Route 
-          path="/" 
-          element={
-            <Layout/>
-        } />
+          <Route path="/signup" element={
+              authInfo ? <Navigate to="/todo"/> : <SignUp/>}/>
+          <Route path="/signin" element={
+              authInfo ? <Navigate to="/todo"/> : <SignIn/> }/>
+          <Route path="/todo" element={
+              authInfo ?  <Todo/> : <Navigate to="/signin"/> }/>
+          <Route path="/*" element={<NotFound/> }></Route>
+          <Route path="/" element={ <Layout/> }/>
       </Routes>
-  )
-
+    );
 };
-
-function PrivateRoute({ children }: { children: JSX.Element }) {
-  const auth = useAuth();
-  return <>{auth.authInfo ? children : <Navigate to="/signin" replace />}</>;
-}
-
-function PublicRoute({ children }: { children: JSX.Element }) {
-  const auth = useAuth();
-  return <>{auth.authInfo ? <Navigate to="/todo" replace /> : children}</>;
-}
 
 export default App;

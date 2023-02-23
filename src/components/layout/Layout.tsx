@@ -6,7 +6,7 @@ export default function Layout(){
     return (
         <>
           <Home />
-          <Outlet />
+          {/* <Outlet /> */}
         </>
     );
 };
