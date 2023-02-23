@@ -1,5 +1,14 @@
+import TodoInsert from "components/todo/TodoInsert";
+import TodoList from "components/todo/TodoList";
+import TodoTemplate from "components/todo/TodoTemplate";
+
 const TodoPage = () => {
-  return <section></section>;
+  return (
+    <TodoTemplate>
+      <TodoInsert />
+      <TodoList />
+    </TodoTemplate>
+  );
 };
 
 export default TodoPage;

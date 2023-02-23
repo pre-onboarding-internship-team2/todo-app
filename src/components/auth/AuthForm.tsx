@@ -23,7 +23,7 @@ const AuthForm = ({ isLogin }: AuthFormProps) => {
 
   const { saveToken } = useContext(AuthContext);
 
-  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const authSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!isAllValid) return;
@@ -52,7 +52,7 @@ const AuthForm = ({ isLogin }: AuthFormProps) => {
   };
 
   return (
-    <form onSubmit={onSubmitHandler}>
+    <form onSubmit={authSubmitHandler}>
       <ShareInput
         type="email"
         testid="email-input"
@@ -70,6 +70,7 @@ const AuthForm = ({ isLogin }: AuthFormProps) => {
       <ShareBtn
         disabled={!isAllValid}
         type="submit"
+        testid={isLogin ? "signin-button" : "signup-button"}
         text={isLogin ? "로그인" : "회원가입"}
       />
     </form>
