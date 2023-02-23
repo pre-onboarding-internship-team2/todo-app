@@ -1,10 +1,10 @@
 import SignUpForm from "components/auth/SignUpForm";
+import Layout from "components/common/Layout";
 
 export default function SignUpPage() {
   return (
-    <>
-      <h2 className="text-lg text-center">회원가입</h2>
+    <Layout>
       <SignUpForm />
-    </>
+    </Layout>
   );
 }

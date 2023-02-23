@@ -1,13 +1,14 @@
 import { useAuth } from "context/authContext";
-import { Link, Outlet } from "react-router-dom";
+import { ReactNode } from "react";
+import { Link } from "react-router-dom";
 
-export default function Layout() {
+export default function Layout({ children }: { children: ReactNode }) {
   return (
     <>
       <div className="flex flex-col items-center mt-12">
         <div className="w-80">
           <Header />
-          <Outlet />
+          {children}
         </div>
       </div>
     </>

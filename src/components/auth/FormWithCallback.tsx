@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { SignRequestProps } from "apis/auth/sign.type";
-import InputSign from "./InputWithValidation";
+import InputWithValidation from "./InputWithValidation";
 
 export default function FormWithCallback({
   submitCallback,
@@ -29,7 +29,7 @@ export default function FormWithCallback({
     <>
       <form onSubmit={handleSubmit} className={"mt-4"}>
         <div className="mb-2">
-          <InputSign
+          <InputWithValidation
             name="email"
             type="email"
             value={email}
@@ -39,7 +39,7 @@ export default function FormWithCallback({
           />
         </div>
         <div className="mb-2">
-          <InputSign
+          <InputWithValidation
             name="password"
             type="password"
             value={password}

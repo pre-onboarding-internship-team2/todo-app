@@ -4,5 +4,10 @@ import FormWithCallback from "./FormWithCallback";
 export default function SignUpForm() {
   const { signIn } = useAuth();
 
-  return <FormWithCallback submitCallback={signIn} />;
+  return (
+    <>
+      <h2 className="text-lg text-center">로그인</h2>
+      <FormWithCallback submitCallback={signIn} />
+    </>
+  );
 }

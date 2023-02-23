@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import Layout from "components/common/Layout";
 import SignInPage from "pages/signin";
 import SignUpPage from "pages/signup";
 import { Navigate } from "react-router-dom";
@@ -11,7 +10,7 @@ function App() {
 
   return (
     <Routes>
-      <Route element={<Layout />}>
+      <Route>
         <Route
           path="/"
           element={

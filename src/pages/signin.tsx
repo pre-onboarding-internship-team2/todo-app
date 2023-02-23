@@ -1,10 +1,10 @@
 import SignInForm from "components/auth/SignInForm";
+import Layout from "components/common/Layout";
 
 export default function SignInPage() {
   return (
-    <>
-      <h2 className="text-lg text-center">로그인</h2>
+    <Layout>
       <SignInForm />
-    </>
+    </Layout>
   );
 }

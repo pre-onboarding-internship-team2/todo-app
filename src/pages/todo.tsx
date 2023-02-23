@@ -1,3 +1,5 @@
+import Layout from "components/common/Layout";
+
 export default function TodoPage() {
-  return <>todo page</>;
+  return <Layout>todo page</Layout>;
 }
