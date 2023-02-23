@@ -1,9 +1,9 @@
 import { Navigate, useRoutes } from 'react-router-dom';
 
 import Layout from 'components/layout/Layout';
-import SignIn from 'components/auth/SignIn';
-import SignUp from 'components/auth/SignUp';
-import Todo from 'components/todo/Todo';
+import SignIn from 'pages/SignIn';
+import SignUp from 'pages/SignUp';
+import Todo from 'pages/Todo';
 
 function App() {
   const isAuth = localStorage.getItem('user');
