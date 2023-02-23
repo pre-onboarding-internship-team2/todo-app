@@ -1,27 +1,31 @@
 import { useState } from "react";
+import { signInApi } from "../../apis/auth/auth";
 
 function Sign(){
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = () => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        
+        
         console.log("submit");
     };
 
-
+    
     return (
         <form style={{ display: "flex", flexDirection: "column"}}
                 onSubmit={handleSubmit}>
             <input 
                 data-testid="email-input" 
-                name="email" 
+                value={email}
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"/>
             <input 
                 data-testid="password-input" 
-                name="password" 
+                value={password}
                 type="password"
                 onChange={(e) => setPassword(e.target.value)} 
                 placeholder="Password"/>
