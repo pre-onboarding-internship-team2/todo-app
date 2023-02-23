@@ -12,7 +12,7 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route element={<Authorized/>}>
-            <Route path='/' element={ <TodoPage/>} />
+            <Route path='/' element={ <TodoPage/> } />
             <Route path='/todo' element={ <TodoPage/>} />
           </Route>
           <Route element={<UnAuthorized />}>

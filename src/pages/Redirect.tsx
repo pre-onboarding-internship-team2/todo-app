@@ -4,13 +4,13 @@ import AuthContext from 'context/auth/AuthContext'
 
 export const Authorized = () => {
     const { token } = useContext(AuthContext);
-    if (token === null) return <Navigate to="/signin" />;
+    if (token === false) return <Navigate to="/signin" />;
 
   return <Outlet />;
 }
 export const UnAuthorized = () => {
     const { token } = useContext(AuthContext);
-    if (token !== null) return <Navigate to="/todo" />;
+    if (token === true) return <Navigate to="/todo" />;
 
     return <Outlet />;
 }
