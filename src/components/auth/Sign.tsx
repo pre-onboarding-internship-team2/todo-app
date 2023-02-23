@@ -54,7 +54,7 @@ function Sign({submitAction, submitCallback} : {
                         <h2 className="text-red	text-sm items-center justify-center">{validMsg.password}</h2> 
                         : null }
                 </div>
-                <button className="bg-green text-white my-0.5 w-60 text-lg py-2 rounded-2xl disabled:bg-gray disabled:cursor-not-allowed"
+                <button className="bg-green-1 text-white my-0.5 w-60 text-lg py-2 rounded-2xl hover:bg-green-2 disabled:bg-gray disabled:cursor-not-allowed"
                     data-testid="signin-button"
                     disabled={!isValidForm}
                 >Submit</button>   
