@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import { signUpInstance, signInInstance } from 'apis/auth/authApi';
+import CommonInput from 'components/common/CommonInput'
+import CommonButton from 'components/common/CommonButton'
 
 type AuthProps = {
   pageType: string
@@ -8,14 +10,13 @@ type AuthProps = {
 
 const SignForm : React.FC<AuthProps> = ( {pageType} ) => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
-
-  const onChangeHanlder = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { target: {name, value} } = e;
-    if(name === 'email') setEmail(value)
-    else if(name === 'password') setPassword(value)
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [disabled, setDisabled] = useState<boolean>(false);
+  const [errorMsg, setErrorMsg] = useState<string>('');
+  
+  const validation = (email: string, password: string): boolean => {
+    return email.includes('@') && password.length > 7 ? false : true
   }
 
   const onSubmitForm = (e: React.FormEvent<HTMLFormElement>): void  => {
@@ -51,12 +52,17 @@ const SignForm : React.FC<AuthProps> = ( {pageType} ) => {
     }
   }
 
+  useEffect(() => {
+    const isValid = validation(email, password);
+    setDisabled(isValid)
+  },[email, password])
+
   return (
     <>
       <form onSubmit={onSubmitForm}>
-        <input type="email" name="email" value={email} placeholder='Email' onChange={onChangeHanlder} required/>
-        <input type="password" name="password" value={password} placeholder='Password' onChange={onChangeHanlder} required/>
-        <button>{pageType === 'signin' ? "로그인" : "회원가입"}</button>
+        <CommonInput type="email" value={email} placeholder='Email' onChange={(e) => setEmail(e.target.value)} required/>
+        <CommonInput type="password" value={password} placeholder='Password' onChange={(e) => setPassword(e.target.value)} required/>
+        <CommonButton disabled={disabled} text={pageType === 'signin' ? "로그인" : "회원가입"}/>
         {errorMsg && <p>{errorMsg}</p>}
       </form>
 
