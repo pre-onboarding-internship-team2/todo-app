@@ -1,12 +1,22 @@
-import useAuthForm from "components/auth/hooks/useAuthForm";
-import Input from "components/common/Input";
-import { NavLink } from "react-router-dom";
+import useAuthForm from 'components/auth/hooks/useAuthForm';
+import Input from 'components/common/Input';
+import { AuthContext } from 'context/authContext';
+import { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Signin = () => {
+  const { login } = useContext(AuthContext);
   const { formState, handleInputChange, errors, isAllValid } = useAuthForm();
 
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+
+    if (!isAllValid) return;
+    login(formState);
+  };
+
   return (
-    <form className="flex flex-col items-center justify-between gap-y-4">
+    <form onSubmit={handleSubmit} className="flex flex-col items-center justify-between gap-y-4">
       <p className="text-2xl">로그인</p>
       <Input
         name="email"
@@ -34,9 +44,9 @@ const Signin = () => {
         로그인
       </button>
       <NavLink
-        to={"signup"}
+        to={'signup'}
         className={({ isActive }) =>
-          ` text-gray-500 hover:underline ${isActive ? "underline" : ""}`
+          ` text-gray-500 hover:underline ${isActive ? 'underline' : ''}`
         }
       >
         가입하러 가기
