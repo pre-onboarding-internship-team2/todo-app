@@ -20,7 +20,7 @@ const Home = () => {
     return (
         <>
             <div className="flex flex-col justify-center items-center place-items-center h-screen">
-                <h1 className="font-semibold mb-5 text-xl">To Do</h1>
+                <h1 className="font-sans font-bold mb-5 text-xl2">To Do</h1>
                     {!authInfo ? (
                         <>
                             <button className="my-0.5 w-60 text-base py-2 bg-green-1 text-white rounded-2xl">
@@ -33,7 +33,7 @@ const Home = () => {
                     ) : (
                         <>
                         <Link to="/todo">
-                        <button className="bg-green-1 text-white my-0.5 w-60 text-base py-2 rounded-2xl hover:bg-green-2">
+                        <button className="font-sans bg-green-1 text-white my-0.5 w-60 text-base py-2 rounded-2xl hover:bg-green-2">
                             My To Do
                         </button>
                         </Link>
