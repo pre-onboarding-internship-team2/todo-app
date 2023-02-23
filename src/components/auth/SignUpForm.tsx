@@ -1,8 +1,8 @@
 import { useAuth } from "context/authContext";
-import SignForm from "./SignForm";
+import FormWithCallback from "./FormWithCallback";
 
-export default function SignUpForm() {
+export default function SignupForm() {
   const { signUp } = useAuth();
 
-  return <SignForm submitCallback={signUp} />;
+  return <FormWithCallback submitCallback={signUp} />;
 }
