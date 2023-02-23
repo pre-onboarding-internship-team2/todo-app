@@ -1,14 +1,27 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { info } from "../components/auth/types";
 import { validation } from "../components/auth/validation";
 import { AuthTemplete } from "../components/common/AuthTemplete";
+import { signInApi } from "../apis/auth/auth";
 
 export const SignInPage = () => {
   const [userInfo, setUserInfo] = useState<info>({ email: "", password: "" });
   const [isUserInfo, setIsUserInfo] = useState<boolean>(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    try {
+      await signInApi(userInfo.email, userInfo.password).then((res) => {
+        localStorage.setItem("token", res.data.access_token);
+        navigate("/todo");
+      });
+    } catch (error: any) {
+      alert(error.response.data.message);
+    }
+  };
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setUserInfo({
@@ -16,6 +29,12 @@ export const SignInPage = () => {
       [name]: value,
     });
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/todo");
+    }
+  }, [navigate]);
 
   useEffect(() => {
     validation(userInfo.email, "email") &&
@@ -27,7 +46,10 @@ export const SignInPage = () => {
   return (
     <>
       <AuthTemplete
+        submitFunc={handleSubmit}
         handleFunc={handleChange}
+        email={userInfo.email}
+        password={userInfo.password}
         bool={isUserInfo}
         path={location.pathname}
       />
