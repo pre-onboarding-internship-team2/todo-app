@@ -1,1 +1,1 @@
-export type LoginResponseType = { token: string };
+export type LoginResponseType = { access_token: string };
