@@ -1,4 +1,4 @@
-import Sign from "../components/auth/Sign";
+import Sign from "../components/auth/components/Sign";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useAuth } from "../context/auth";

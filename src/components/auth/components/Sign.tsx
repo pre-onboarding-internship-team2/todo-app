@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { AuthRequestProps } from "../../apis/auth/auth.types";
-import SignValidation from "./validation/SignValidation";
+import { AuthRequestProps } from "../../../apis/auth/auth.types";
+import SignValidation from "../validation/SignValidation";
 
 function Sign({submitAction, submitCallback} : {
     submitAction: (props: AuthRequestProps, callback: VoidFunction) => void;

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import Sign from "../components/auth/Sign";
+import Sign from "../components/auth/components/Sign";
 import { useAuth } from "../context/auth";
 
 function SignIn(){
