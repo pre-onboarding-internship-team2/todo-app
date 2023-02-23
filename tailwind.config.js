@@ -5,7 +5,13 @@ module.exports = {
     fontSize: {
       sm: '0.8rem',
     },
-    extend: {},
+    extend: {
+      colors: {
+        green: '#86EFAC',
+        gray: '#A8A29E',
+        red: '#EF4444',
+      }
+    },
   },
   plugins: [],
 }

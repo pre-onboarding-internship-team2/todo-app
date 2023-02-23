@@ -48,13 +48,13 @@ function Sign({submitAction, submitCallback} : {
                     placeholder="Password"/>
                 <div className="flex flex-col justify-center items-center">
                     { validMsg?.email ? 
-                        <h2 className="text-red-500	text-sm items-center justify-center">{validMsg.email}</h2> 
+                        <h2 className="text-red	text-sm items-center justify-center">{validMsg.email}</h2> 
                         : null }
                     { validMsg?.password ? 
-                        <h2 className="text-red-500	text-sm items-center justify-center">{validMsg.password}</h2> 
+                        <h2 className="text-red	text-sm items-center justify-center">{validMsg.password}</h2> 
                         : null }
                 </div>
-                <button className="my-0.5 w-60 text-lg py-2 bg-green-300 text-white rounded-2xl disabled:bg-gray-300 disabled:cursor-not-allowed"
+                <button className="bg-green text-white my-0.5 w-60 text-lg py-2 rounded-2xl disabled:bg-gray disabled:cursor-not-allowed"
                     data-testid="signin-button"
                     disabled={!isValidForm}
                 >Submit</button>   
