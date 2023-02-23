@@ -18,7 +18,7 @@ const CommonInput = ({ type, value="", placeholder, onChange }: CommonInputProps
   }
 
   return (
-    <input type={type} value={value} placeholder={placeholder} onChange={changeHandler} />
+    <input type={type} value={value} placeholder={placeholder} onChange={changeHandler} className='border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 w-80 mb-3.5' />
   );
 };
 
