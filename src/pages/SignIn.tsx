@@ -1,11 +1,25 @@
+import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 import Sign from "../components/auth/Sign";
+import { useAuth } from "../context/auth";
 
 function SignIn(){
+    const auth = useAuth();
+    const navigator = useNavigate();
+
+    const submitAction = auth.signIn;
+    const submitCallback = () => {
+        navigator("/todo", { replace: true });
+    };
+
     return (
-        <>
-        <h2>SignIn Page</h2>
-        <Sign />
-        </>
+        <div className="flex flex-col justify-center items-center h-screen">
+            <h1 className="p-2 font-extrabold">로그인</h1>
+            <Sign submitAction={submitAction} submitCallback={submitCallback} />
+            <Link to="/signup" className="text-zinc-400	 hover:text-black	">
+                Dont have a account? Sign up.
+            </Link>
+        </div>
     );
 };
 
