@@ -2,7 +2,6 @@ import { createContext, useState, useEffect, ReactNode, useContext } from "react
 import { AxiosError } from 'axios';
 import { signUpApi, signInApi } from "../apis/auth/auth";
 import { AuthRequestProps } from "../apis/auth/auth.types";
-import { callbackify } from "util";
 
 interface AuthContextProps {
     authInfo: string;
@@ -44,6 +43,7 @@ export function AuthProvider({ children } : { children: ReactNode}) {
         signInApi(data)
         .then((res) => {
             localStorage.setItem("access_token", res.data.access_token);
+            setAuthInfo(res.data.access_token);
             callback();
             return { accessToken: res.data.access_token };
         })
