@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { AuthData } from 'components/auth/types/auth.types';
-import { LoginResponseType } from './auth.type';
+import { LoginResponseType } from './types/auth.types';
 
 const baseURL = 'https://pre-onboarding-selection-task.shop';
 
