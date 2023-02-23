@@ -1,7 +1,9 @@
-export type AuthFormState = {
+export type AuthData = {
   email: string;
   password: string;
 };
+
+export type AuthFormState = AuthData;
 
 export type FormErrorState<T> = {
   [Property in keyof T]: string[] | undefined;
