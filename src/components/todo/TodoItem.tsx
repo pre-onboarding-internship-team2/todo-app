@@ -1,22 +1,48 @@
+import { useState, useContext } from "react";
 import ShareBtn from "components/common/ShareBtn";
 import ShareInput from "components/common/ShareInput";
 import useInput from "hooks/useInput";
-import React, { useState } from "react";
+import { Todo, TodoContext } from "context/TodoContext";
 
-const TodoItem = () => {
+type TodoItemProps = {
+  todo: Todo;
+};
+
+const TodoItem = ({ todo }: TodoItemProps) => {
   const [isEdit, setIsEdit] = useState(false);
-  const { value, changeHandler: editTodoChangeHandler } = useInput("");
+  const {
+    value,
+    setValue,
+    changeHandler: editTodoChangeHandler,
+  } = useInput("");
+  const { updateTodoHandler, deleteTodoHandler } = useContext(TodoContext);
+
+  const checkEditHandler = () => {
+    const { id, todo: originalTodo, isCompleted } = todo;
+    updateTodoHandler(id, originalTodo, !isCompleted);
+  };
 
   const editStatusChangeHandler = () => {
     setIsEdit((prev) => !prev);
   };
 
+  const newTodoSubmitHandler = () => {
+    updateTodoHandler(todo.id, value, todo.isCompleted).then(() => {
+      setIsEdit((prev) => !prev);
+      setValue("");
+    });
+  };
+
   return (
-    <li>
-      <label>
-        <input type="checkbox" />
+    <li className="flex items-center [&:nth-child(even)]:bg-teal-300">
+      <label className="w-full flex">
+        <input
+          type="checkbox"
+          checked={todo.isCompleted}
+          onChange={checkEditHandler}
+        />
         {!isEdit ? (
-          <span></span>
+          <span className="pl-3">{todo.todo}</span>
         ) : (
           <ShareInput
             type="text"
@@ -28,25 +54,39 @@ const TodoItem = () => {
         )}
       </label>
       {!isEdit ? (
-        <>
+        <div className="flex">
           <ShareBtn
+            role="todo"
             type="button"
             testid="modify-button"
             text="수정"
             onClick={editStatusChangeHandler}
           />
-          <ShareBtn type="submit" testid="delete-button" text="삭제" />
-        </>
-      ) : (
-        <>
-          <ShareBtn type="submit" testid="submit-button" text="제출" />
           <ShareBtn
+            role="todo"
+            type="button"
+            testid="delete-button"
+            text="삭제"
+            onClick={() => deleteTodoHandler(todo.id)}
+          />
+        </div>
+      ) : (
+        <div className="flex">
+          <ShareBtn
+            role="todo"
+            type="button"
+            testid="submit-button"
+            text="제출"
+            onClick={newTodoSubmitHandler}
+          />
+          <ShareBtn
+            role="todo"
             type="button"
             testid="cancel-button"
             text="취소"
             onClick={editStatusChangeHandler}
           />
-        </>
+        </div>
       )}
     </li>
   );

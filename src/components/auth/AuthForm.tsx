@@ -21,7 +21,7 @@ const AuthForm = ({ isLogin }: AuthFormProps) => {
 
   const { isAllValid } = authValidation(formState);
 
-  const { saveToken } = useContext(AuthContext);
+  const { access_token, saveToken } = useContext(AuthContext);
 
   const authSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,6 +36,9 @@ const AuthForm = ({ isLogin }: AuthFormProps) => {
         }
         if (typeof res === "string") {
           saveToken(res);
+        }
+        if (access_token) {
+          window.location.href = "/todo";
         }
       });
     } else {
@@ -52,7 +55,10 @@ const AuthForm = ({ isLogin }: AuthFormProps) => {
   };
 
   return (
-    <form onSubmit={authSubmitHandler}>
+    <form
+      className="w-2/5 h-1/2 space-y-4 flex flex-col justify-center items-center border border-orange-300 bg-orange-300 rounded-md text-white"
+      onSubmit={authSubmitHandler}
+    >
       <ShareInput
         type="email"
         testid="email-input"

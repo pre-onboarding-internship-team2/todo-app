@@ -8,7 +8,7 @@ import { useContext } from "react";
 import { useRoutes, Navigate } from "react-router-dom";
 
 function App() {
-  const { token } = useContext(AuthContext);
+  const { access_token } = useContext(AuthContext);
 
   let element = useRoutes([
     {
@@ -21,15 +21,15 @@ function App() {
         },
         {
           path: "todo",
-          element: token ? <TodoPage /> : <Navigate to="/signin" />,
+          element: access_token ? <TodoPage /> : <Navigate to="/signin" />,
         },
         {
           path: "signin",
-          element: !token ? <SigninPage /> : <Navigate to="/todo" />,
+          element: !access_token ? <SigninPage /> : <Navigate to="/todo" />,
         },
         {
           path: "signup",
-          element: !token ? <SignupPage /> : <Navigate to="/todo" />,
+          element: !access_token ? <SignupPage /> : <Navigate to="/todo" />,
         },
       ],
     },

@@ -2,7 +2,7 @@ import React, { createContext, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 type ContextType = {
-  token: string | null;
+  access_token: string | null;
   saveToken: (token: string) => void;
   clearToken: () => void;
 };
@@ -11,33 +11,30 @@ type AuthContextProviderProps = {
   children: React.ReactNode;
 };
 
-const AUTH_TOKEN_KEY = "token";
-
 export const AuthContext = createContext<ContextType>({
-  token: null,
+  access_token: null,
   saveToken: () => {},
   clearToken: () => {},
 });
 
 const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const navigate = useNavigate();
-  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+  const access_token = localStorage.getItem("token");
 
   const saveToken = useCallback(
     (token: string) => {
-      localStorage.setItem(AUTH_TOKEN_KEY, token);
+      localStorage.setItem("token", token);
       navigate("/todo");
     },
     [navigate],
   );
 
   const clearToken = useCallback(() => {
-    localStorage.removeItem(AUTH_TOKEN_KEY);
+    localStorage.removeItem("token");
     navigate("/signin");
   }, [navigate]);
-  console.log("rendering");
 
-  const value = { token, saveToken, clearToken };
+  const value = { access_token, saveToken, clearToken };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 

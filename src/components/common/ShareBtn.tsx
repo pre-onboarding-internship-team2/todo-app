@@ -4,20 +4,31 @@ type ButtonTypes = React.DetailedHTMLProps<
 >;
 
 interface ShareBtnProps extends ButtonTypes {
+  role?: string;
   text: string;
   disabled?: boolean;
-  testid: string;
+  testid?: string;
 }
 
-const ShareBtn = ({ disabled, type, text, testid }: ShareBtnProps) => {
+const ShareBtn = ({
+  role,
+  disabled,
+  type,
+  text,
+  testid,
+  onClick,
+}: ShareBtnProps) => {
   return (
     <button
       disabled={disabled}
-      className={`border ${
-        disabled ? "bg-red-500 cursor-not-allowed" : "bg-blue-500"
+      className={`${role === "todo" ? "p-2" : "p-4"} ${
+        role === "todo" ? "w-16" : role === "logout" ? "w-28" : "w-44"
+      } rounded-md border ${disabled && "bg-red-500 cursor-not-allowed"} ${
+        role === "logout" ? "bg-transparent text-white" : "bg-blue-500"
       }`}
       type={type}
       data-testid={testid}
+      onClick={onClick}
     >
       {text}
     </button>
