@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
-import Layout from './components/common/Layout';
 import TokenContext from './context/token/TokenContext';
 import NotFound from './pages/NotFound';
 import SignInPage from './pages/SignInPage';
@@ -10,11 +9,9 @@ import TodoPage from './pages/TodoPage';
 function App() {
   const { token: isAuth } = useContext(TokenContext);
 
-  let element = useRoutes([
+  return useRoutes([
     {
       path: '/',
-      element: <Layout />,
-      errorElement: <NotFound />,
       children: [
         {
           path: '',
@@ -32,10 +29,13 @@ function App() {
           path: 'signup',
           element: !isAuth ? <SignUpPage /> : <Navigate to='/todo' />,
         },
+        {
+          path: '*',
+          element: <NotFound />,
+        },
       ],
     },
   ]);
-  return element;
 }
 
 export default App;
