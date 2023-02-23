@@ -1,7 +1,7 @@
 import { requestLogin } from 'apis/auth';
 import { AuthData } from 'components/auth/types/auth.types';
 import { createContext, useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getToken, removeToken, saveToken } from 'utils/localStorage';
 
 export type AuthContextType = {
@@ -19,6 +19,7 @@ export const AuthContext = createContext<AuthContextType>({
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const [token, setToken] = useState<string | null>(null);
 
   const isLoggedIn = useMemo(() => Boolean(token), [token]);
@@ -27,7 +28,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     requestLogin(authData).then(({ token }) => {
       saveToken(token);
       setToken(token);
-      navigate('/todo');
+      const origin = location.state?.from?.pathname || '/todo';
+      navigate(origin); // 로그인 화면으로 이동하기 전 주소로 보내기
     });
   };
 
@@ -38,7 +40,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   useEffect(() => {
-    setToken(getToken());
+    const savedToken = getToken();
+    if (savedToken) {
+      setToken(savedToken);
+      navigate('/todo');
+    }
   }, []);
 
   return (
