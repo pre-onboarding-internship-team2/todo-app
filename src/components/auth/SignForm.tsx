@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import CommonInput from 'components/common/CommonInput'
 import CommonButton from 'components/common/CommonButton'
 import AuthContext from 'context/auth/AuthContext'
+import { Validation } from 'components/auth/Validation'
 
 import { signin, signup } from 'apis/auth/index'
 type AuthProps = {
@@ -18,14 +19,14 @@ const SignForm : React.FC<AuthProps> = ( {pageType} ) => {
   const [disabled, setDisabled] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string>('');
   
-  const validation = (email: string, password: string): boolean => {
-    if(!email.includes('@'))setErrorMsg('이메일 형식이 올바르지 않습니다.')
-    else if(password.length < 8)setErrorMsg('비밀번호는 최소 8자 이상이어야 합니다.')
-    if(email.includes('@') && password.length > 7 ) setErrorMsg('')
-    if(email.length === 0 && password.length === 0) setErrorMsg('')
+  // const validation = (email: string, password: string): boolean => {
+  //   if(!email.includes('@'))setErrorMsg('이메일 형식이 올바르지 않습니다.')
+  //   else if(password.length < 8)setErrorMsg('비밀번호는 최소 8자 이상이어야 합니다.')
+  //   if(email.includes('@') && password.length > 7 ) setErrorMsg('')
+  //   if(email.length === 0 && password.length === 0) setErrorMsg('')
 
-    return email.includes('@') && password.length > 7 ? false : true
-  }
+  //   return email.includes('@') && password.length > 7 ? false : true
+  // }
 
   const onSubmitForm = (e: React.FormEvent<HTMLFormElement>): void  => {
     e.preventDefault();
@@ -45,8 +46,9 @@ const SignForm : React.FC<AuthProps> = ( {pageType} ) => {
   }
 
   useEffect(() => {
-    const isValid = validation(email, password);
-    setDisabled(isValid)
+    const { valid, message } = Validation(email, password);
+    setDisabled(!valid)
+    setErrorMsg(message!)
   },[email, password])
 
   return (
