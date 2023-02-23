@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link, useNavigate } from "react-router-dom";
-import { signUpInstance, signInInstance } from 'apis/auth/authApi';
 import CommonInput from 'components/common/CommonInput'
 import CommonButton from 'components/common/CommonButton'
 import AuthContext from 'context/auth/AuthContext'
 
+import { signin, signup } from 'apis/auth/index'
 type AuthProps = {
   pageType: string
 }
@@ -30,32 +30,17 @@ const SignForm : React.FC<AuthProps> = ( {pageType} ) => {
   const onSubmitForm = (e: React.FormEvent<HTMLFormElement>): void  => {
     e.preventDefault();
     if(pageType === 'signin'){
-      signInInstance(email, password)
-        .then((res) => {
-          saveToken(res.data.access_token)
-          setErrorMsg('');
-        })
-        .catch((error => {
-          if (error.response.status === 401) {
-            setErrorMsg('이메일 또는 비밀번호가 일치하지 않습니다.')
-          }
-          else if(error.response.status === 404){
-            setErrorMsg('사용자를 찾을 수 없습니다. 다시 시도해 주세요.')
-          }
-     }))
+      signin({ email, password })
+      .then((data) => saveToken(data.accessToken) )
+      .catch((err) => setErrorMsg(err))
     }
     else if( pageType === 'signup'){
-      signUpInstance(email, password)
-        .then(() => {
-            alert('회원가입에 성공하였습니다. 로그인을 시도해주세요.')
-            navigate("/signin");
-        })
-        .catch((error) => {
-            if (error.response.status === 400) {
-                alert('이미 존재하는 이메일입니다.');
-                navigate("/");
-            }
-        });
+      signup({ email, password })
+      .then((data) => {
+        alert(data.message);
+        navigate("/signin"); 
+      })
+      .catch((err) => alert(err))
     }
   }
 
