@@ -5,19 +5,18 @@ import {
     CreateTodoRequestProps, 
     UpdateTodoRequestProps, 
     DeleteTodoRequestProps } from "../apis/todo/todo.types";
-import { createTodoApi, getTodoApi } from "../apis/todo/todo";
+import { createTodoApi, deleteTodoApi, getTodoApi, updateTodoApi } from "../apis/todo/todo";
 
 interface TodoContextProps {
     toDos: TodoProps[];
     createToDo: (props: CreateTodoRequestProps) => void;
-    // updateToDo: (props: UpdateTodoRequestProps) => void;
-    // deleteToDo: (props: DeleteTodoRequestProps) => void;
+    updateToDo: (props: UpdateTodoRequestProps) => void;
+    deleteToDo: (props: DeleteTodoRequestProps) => void;
 }
 
 const TodoContext = createContext<TodoContextProps>(null!);
 
 export function TodoProvider({ children } : { children: ReactNode }) {
-    console.log("todo Provider");
     const [toDos, setToDos] = useState<TodoProps[]>([]);
 
     const getToDo = () => {
@@ -30,26 +29,17 @@ export function TodoProvider({ children } : { children: ReactNode }) {
         })
     };
 
-    function createToDo (props: CreateTodoRequestProps) {
-        createTodoApi(props)
-        .then((res) => {
-            setToDos((prevToDos) => {
-                return [
-                    ...prevToDos,
-                    res.data
-                ]
-            })
-        })
-        .catch((err) => {
-            throw new Error(err);
-        });
-        
+    const createToDo = async (props: CreateTodoRequestProps)  => {
+        createTodoApi(props);
+        getToDo();
     };
-    const updateToDo = () => {
-
+    const updateToDo = async (props: UpdateTodoRequestProps) => {
+        await updateTodoApi(props);
+        getToDo();
     };
-    const deleteToDo = () => {
-
+    const deleteToDo = async (props: DeleteTodoRequestProps) => {
+        await deleteTodoApi(props);
+        getToDo();
     };
 
     useEffect(()=>{
@@ -58,7 +48,7 @@ export function TodoProvider({ children } : { children: ReactNode }) {
 
 
     return (
-        <TodoContext.Provider value={{ toDos, createToDo }}>
+        <TodoContext.Provider value={{ toDos, createToDo, updateToDo, deleteToDo }}>
             {children}
         </TodoContext.Provider>
     );

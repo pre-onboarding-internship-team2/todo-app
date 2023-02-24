@@ -1,38 +1,29 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { MdDone, MdDelete, MdEdit, MdCancel } from 'react-icons/md';
-import { DeleteTodoRequestProps, TodoProps } from "../../apis/todo/todo.types";
+import { TodoProps } from "../../apis/todo/todo.types";
+import { useToDos } from "../../context/todo";
 
 function TodoItem( todoItem: TodoProps) {
+    const { id, todo, isCompleted } = todoItem;
+    const { updateToDo, deleteToDo } = useToDos();
     const [editText, setEditText] = useState(todoItem.todo);
-    // const [completed, setCompleted] = useState(todoItem.isCompleted);
-    const [completed, setCompleted] = useState(true);
     const [toggle, setToggle] = useState(false);
-    
-    const handleComplete = () => {
-        setCompleted(!completed);
-        // updateToDo
-    }
 
     const handleEdit = () => {
         if (!editText) {
             // notify 주기
             return;
         }
-        //updateToDo
+        updateToDo({...todoItem, todo: editText})
         setToggle(!toggle);
-    }
-
-    const handleDelete = (id : DeleteTodoRequestProps) => {
-        //deleteToDo
-        console.log("delete");
     }
 
     return(
         <li className="flex items-center px-3">
             <div className="flex items-center justify-center mr-5 cursor-pointer w-8 h-8 rounded-md border-solid font-sm"
-                onClick={() => handleComplete()}>
+                onClick={() => updateToDo({...todoItem, isCompleted: !isCompleted})}>
                 {/* {todoItem.isCompleted && <MdDone/>} */}
-                {completed && <MdDone/>}
+                {isCompleted && <MdDone/>}
             </div>
             { toggle ? (
                 <>
@@ -56,7 +47,7 @@ function TodoItem( todoItem: TodoProps) {
             ) : (
                 <>
                     <div className='flex-1 text-base'>
-                        {todoItem.todo}
+                        {todo}
                     </div>
                     <button className='flex items-center justify-center text-blue-1 text-xl cursor-pointer hover:text-gray-2'
                         data-testid="modify-button"
@@ -65,7 +56,7 @@ function TodoItem( todoItem: TodoProps) {
                     </button>
                     <button className='flex items-center justify-center text-blue-1 text-xl cursor-pointer hover:text-gray-2'
                         data-testid="delete-button"
-                        onClick={() => handleDelete({id: todoItem.id})}>
+                        onClick={() => deleteToDo({id: id})}>
                         <MdDelete />
                     </button>
                 </>
@@ -74,4 +65,4 @@ function TodoItem( todoItem: TodoProps) {
     );
 };
 
-export default TodoItem;
+export default React.memo(TodoItem);
