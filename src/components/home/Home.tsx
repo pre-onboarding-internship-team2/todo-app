@@ -1,17 +1,8 @@
-import { Outlet, useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 
-export default function Layout(){
+export default function Home(){
     
-    return (
-        <>
-          <Home />
-          {/* <Outlet /> */}
-        </>
-    );
-};
-
-const Home = () => {
     let { authInfo, signOut } = useAuth();
     let navigate = useNavigate();
 
@@ -50,4 +41,3 @@ const Home = () => {
         </>
     );
 };
-
