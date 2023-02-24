@@ -23,7 +23,6 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
   const saveToken = useCallback((token: string) => {
     localStorage.setItem("token", token);
-    window.location.href = "/todo";
   }, []);
 
   const clearToken = useCallback(() => {

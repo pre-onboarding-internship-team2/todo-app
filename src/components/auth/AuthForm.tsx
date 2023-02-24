@@ -36,13 +36,14 @@ const AuthForm = ({ isLogin }: AuthFormProps) => {
         }
         if (typeof res === "string") {
           saveToken(res);
+          window.location.reload();
         }
       });
     } else {
       // 회원가입 api
       signUp({ email, password }).then((res) => {
         if (res) {
-          if (res.data.statusCode >= 400) {
+          if (res.status >= 400) {
             return;
           }
         }

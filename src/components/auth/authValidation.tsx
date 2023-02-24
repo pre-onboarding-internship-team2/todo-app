@@ -1,14 +1,19 @@
+const EMAIL_CHECK = new RegExp(
+  "[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*",
+);
+const PW_CHECK = new RegExp("(?=.{8,})");
+
 export const authValidation = (formState: {
   email: string;
   password: string;
 }) => {
   const isValid = { email: true, password: true };
 
-  if (!formState.email.includes("@")) {
+  if (!EMAIL_CHECK.test(formState.email)) {
     isValid.email = false;
   }
 
-  if (formState.password.length < 8) {
+  if (!PW_CHECK.test(formState.password)) {
     isValid.password = false;
   }
 
