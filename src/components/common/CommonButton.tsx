@@ -1,11 +1,17 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
 interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>  {
-  text: string
+  children: React.ReactNode
+  className?: string
 }
 
+
+
 const CommonButton = (props: ButtonProps) => {
-  return <button {...props} className="w-52 rounded-lg bg-indigo-300 py-1.5 font-semibold">{props.text}</button>;
+  const defaultClassName = "w-52 rounded-lg bg-indigo-300 py-1.5 font-semibold "
+  const displayname = defaultClassName.concat(props.className || '')
+
+  return <button {...props} className={displayname}>{props.children}</button>;
 };
 
 export default CommonButton

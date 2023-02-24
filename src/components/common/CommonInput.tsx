@@ -5,20 +5,22 @@ export type InputChangeEvent = ChangeEvent<HTMLInputElement>
 
 interface CommonInputProps extends InputHTMLAttributes<HTMLInputElement> {
   type: string;
+  className?: string;
   value?: InputValue;
-  placeholder: string;
+  placeholder?: string;
   onChange?: (e: InputChangeEvent) => void
 }
 
-const CommonInput = ({ type, value="", placeholder, onChange }: CommonInputProps) => {
-  const [inputValue, setInputValue] = useState<InputValue>(value);
+const CommonInput = (props: CommonInputProps) => {
+  const [inputValue, setInputValue] = useState<InputValue>(props.value || '');
   const changeHandler = (e: InputChangeEvent) => {
     setInputValue(e.target.value);
-    onChange && onChange(e)
+    props.onChange && props.onChange(e)
   }
-
+  const defaultClassName = "border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 w-80 mb-3.5 "
+  const displayname = defaultClassName.concat(props.className || '')
   return (
-    <input type={type} value={value} placeholder={placeholder} onChange={changeHandler} className='border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 w-80 mb-3.5' />
+    <input type={props.type} value={props.value} placeholder={props.placeholder} onChange={changeHandler} className={displayname} />
   );
 };
 
