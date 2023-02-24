@@ -6,5 +6,5 @@ export async function getTodoApi() {
 };
 
 export async function createTodoApi(todo: CreateTodoRequestProps) {
-    return await apiClient.post<CreateTodoRequestProps>("/todos", { todo });
+    return await apiClient.post<CreateTodoRequestProps>("/todos", todo);
 };
