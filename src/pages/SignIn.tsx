@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signin } from 'apis/auth';
 import { emailValidation, pwValidation } from 'components/auth/validation/Validation';
