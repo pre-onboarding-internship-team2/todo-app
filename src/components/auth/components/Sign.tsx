@@ -9,26 +9,13 @@ function Sign({submitAction, submitCallback} : {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [isValidForm, setIsValidForm] = useState(false);
-    const [validMsg, setValidMsg] = useState<AuthRequestProps>();
+    const { valid: isValidForm, message: validMsg } = SignValidation({email, password});
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         
         submitAction({email, password}, submitCallback);
     };
-
-    useEffect(()=> {
-        const { valid, message } = SignValidation({email, password});
-
-        setValidMsg((msg)=> {
-            return {
-                email: message.email,
-                password: message.password
-            };
-        });
-        setIsValidForm(valid);
-    }, [email, password]);
 
     return (
         <div className="flex justify-center items-center">
