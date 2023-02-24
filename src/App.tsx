@@ -5,15 +5,17 @@ import TodoPage from 'pages/TodoPage';
 import NotFoundPage from 'pages/NotFoundPage';
 import AuthProvider from 'context/auth/AuthProvider'
 import { Authorized, UnAuthorized } from 'pages/Redirect'
+import TodoProvider from 'context/todo/TodoProvider';
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
+      <TodoProvider>
         <Routes>
           <Route element={<Authorized/>}>
-            <Route path='/' element={ <TodoPage/> } />
-            <Route path='/todo' element={ <TodoPage/>} />
+              <Route path='/' element={ <TodoPage/> } />
+              <Route path='/todo' element={ <TodoPage/>} />
           </Route>
           <Route element={<UnAuthorized />}>
             <Route path='/signin' element={<SignInPage/>} />
@@ -21,7 +23,7 @@ function App() {
           </Route>
           <Route path='/*' element={ <NotFoundPage/>}/>
         </Routes>
-      
+        </TodoProvider>
       </AuthProvider>
     </BrowserRouter>
   ) ;
