@@ -14,7 +14,9 @@ interface TodoContextProps {
     deleteToDo: (props: DeleteTodoRequestProps) => void;
 }
 
-const TodoContext = createContext<TodoContextProps>(null!);
+const TodoContext = createContext<TodoContextProps>(
+    { toDos: [], createToDo: () => {}, updateToDo: () => {}, deleteToDo: () => {}}
+);
 
 export function TodoProvider({ children } : { children: ReactNode }) {
     const [toDos, setToDos] = useState<TodoProps[]>([]);

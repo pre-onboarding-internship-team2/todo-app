@@ -4,13 +4,15 @@ import { signUpApi, signInApi } from "../apis/auth/auth";
 import { AuthRequestProps } from "../apis/auth/auth.types";
 
 interface AuthContextProps {
-    authInfo: string;
+    authInfo: string | null;
     signUp: (props: AuthRequestProps, callback: VoidFunction) => void;
     signIn: (props: AuthRequestProps, callback: VoidFunction) => void;
     signOut: (callback: VoidFunction) => void;
 }
 
-const AuthContext = createContext<AuthContextProps>(null!);
+const AuthContext = createContext<AuthContextProps>(
+    { authInfo: null, signUp: () => {}, signIn: () => {}, signOut: () => {}}
+);
 
 export function AuthProvider({ children } : { children: ReactNode}) {
     const [authInfo, setAuthInfo] = useState("");
