@@ -14,7 +14,7 @@ function SignUp(){
 
     return (
         <div className="flex flex-col justify-center items-center h-screen">
-            <h2 className="p-2 font-extrabold">회원가입</h2>
+            <h2 className="p-2 font-extrabold text-base">회원가입</h2>
             <Sign submitAction={submitAction} submitCallback={submitCallback}/>
             <Link to="/signin" className="text-gray	 hover:text-black	">
                 Already have account? Sign In.

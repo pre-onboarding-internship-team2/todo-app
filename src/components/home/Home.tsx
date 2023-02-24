@@ -22,7 +22,7 @@ export default function Home(){
                     ) : (
                         <>
                         <Link to="/todo">
-                        <button className="font-sans bg-green-1 text-white my-0.5 w-60 text-sm py-2 rounded-2xl hover:bg-green-2">
+                        <button className="font-sans bg-green-1 text-white my-0.5 w-60 text-base py-2 rounded-2xl hover:bg-green-2">
                             My To Do
                         </button>
                         </Link>
