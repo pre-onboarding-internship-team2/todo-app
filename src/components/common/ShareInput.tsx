@@ -5,6 +5,7 @@ type ShareInputProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
   placeholder: string;
+  className: string;
 };
 
 const ShareInput = ({
@@ -14,12 +15,11 @@ const ShareInput = ({
   onChange,
   value,
   placeholder,
+  className,
 }: ShareInputProps) => {
   return (
     <input
-      className={`px-1 ${
-        role === "todo" ? "py-2" : "py-4"
-      } text-black rounded-md border-2`}
+      className={className}
       type={type}
       data-testid={testid}
       onChange={onChange}

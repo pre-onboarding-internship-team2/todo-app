@@ -10,7 +10,7 @@ const TodoList = () => {
   }, [reLoadTodos]);
 
   return (
-    <ul className="max-h-52 overflow-y-auto">
+    <ul className="max-h-52 min-h-[13rem] overflow-y-auto">
       {todos.map((todo) => (
         <TodoItem key={todo.id} todo={todo} />
       ))}

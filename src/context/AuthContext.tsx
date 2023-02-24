@@ -21,13 +21,10 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const navigate = useNavigate();
   const access_token = localStorage.getItem("token");
 
-  const saveToken = useCallback(
-    (token: string) => {
-      localStorage.setItem("token", token);
-      navigate("/todo");
-    },
-    [navigate],
-  );
+  const saveToken = useCallback((token: string) => {
+    localStorage.setItem("token", token);
+    window.location.href = "/todo";
+  }, []);
 
   const clearToken = useCallback(() => {
     localStorage.removeItem("token");

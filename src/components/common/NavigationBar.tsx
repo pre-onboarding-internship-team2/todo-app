@@ -24,7 +24,6 @@ const NavigationBar = () => {
         </Link>
         {access_token ? (
           <ShareBtn
-            role="logout"
             className="nav_btn"
             type="button"
             text="로그아웃"

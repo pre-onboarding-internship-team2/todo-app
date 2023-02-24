@@ -50,20 +50,21 @@ const TodoItem = ({ todo }: TodoItemProps) => {
             value={value}
             onChange={editTodoChangeHandler}
             placeholder="내용 수정"
+            className={"px-1 py-2 w-full text-black roundedm-md border-2"}
           />
         )}
       </label>
       {!isEdit ? (
         <div className="flex">
           <ShareBtn
-            role="todo"
+            className={"p-2 w-16 rounded-md border bg-blue-500"}
             type="button"
             testid="modify-button"
             text="수정"
             onClick={editStatusChangeHandler}
           />
           <ShareBtn
-            role="todo"
+            className={"p-2 w-16 rounded-md border bg-blue-500"}
             type="button"
             testid="delete-button"
             text="삭제"
@@ -73,14 +74,14 @@ const TodoItem = ({ todo }: TodoItemProps) => {
       ) : (
         <div className="flex">
           <ShareBtn
-            role="todo"
+            className={"p-2 w-16 rounded-md border bg-blue-500"}
             type="button"
             testid="submit-button"
             text="제출"
             onClick={newTodoSubmitHandler}
           />
           <ShareBtn
-            role="todo"
+            className={"p-2 w-16 rounded-md border bg-blue-500"}
             type="button"
             testid="cancel-button"
             text="취소"

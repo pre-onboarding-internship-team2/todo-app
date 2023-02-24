@@ -21,7 +21,7 @@ const AuthForm = ({ isLogin }: AuthFormProps) => {
 
   const { isAllValid } = authValidation(formState);
 
-  const { access_token, saveToken } = useContext(AuthContext);
+  const { saveToken } = useContext(AuthContext);
 
   const authSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,9 +36,6 @@ const AuthForm = ({ isLogin }: AuthFormProps) => {
         }
         if (typeof res === "string") {
           saveToken(res);
-        }
-        if (access_token) {
-          window.location.href = "/todo";
         }
       });
     } else {
@@ -65,6 +62,7 @@ const AuthForm = ({ isLogin }: AuthFormProps) => {
         value={email}
         onChange={emailChangeHandler}
         placeholder="이메일"
+        className={"px-1 py-4 text-black rounded-md border-2"}
       />
       <ShareInput
         type="password"
@@ -72,9 +70,13 @@ const AuthForm = ({ isLogin }: AuthFormProps) => {
         value={password}
         onChange={passwordChangeHandler}
         placeholder="비밀번호"
+        className={"px-1 py-4 text-black rounded-md border-2"}
       />
       <ShareBtn
         disabled={!isAllValid}
+        className={`p-4 w-44 rounded-md border ${
+          !isAllValid ? "bg-red-500 cursor-not-allowed" : "bg-blue-500"
+        }`}
         type="submit"
         testid={isLogin ? "signin-button" : "signup-button"}
         text={isLogin ? "로그인" : "회원가입"}
