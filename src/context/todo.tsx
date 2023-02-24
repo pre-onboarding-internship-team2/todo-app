@@ -20,7 +20,7 @@ export function TodoProvider({ children } : { children: ReactNode }) {
     console.log("todo Provider");
     const [toDos, setToDos] = useState<TodoProps[]>([]);
 
-    const getToDos = () => {
+    const getToDo = () => {
         getTodoApi()
         .then((res) => {
             setToDos(res.data);
@@ -30,9 +30,20 @@ export function TodoProvider({ children } : { children: ReactNode }) {
         })
     };
 
-    const createToDo: TodoContextProps['createToDo'] = (props) => {
-        createTodoApi(props);
-        getToDos();
+    function createToDo (props: CreateTodoRequestProps) {
+        createTodoApi(props)
+        .then((res) => {
+            setToDos((prevToDos) => {
+                return [
+                    ...prevToDos,
+                    res.data
+                ]
+            })
+        })
+        .catch((err) => {
+            throw new Error(err);
+        });
+        
     };
     const updateToDo = () => {
 
@@ -41,9 +52,10 @@ export function TodoProvider({ children } : { children: ReactNode }) {
 
     };
 
-    useEffect(() => {
-        getToDos();
-    }, []);
+    useEffect(()=>{
+        getToDo();
+    },[])
+
 
     return (
         <TodoContext.Provider value={{ toDos, createToDo }}>
