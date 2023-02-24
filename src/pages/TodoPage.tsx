@@ -1,5 +1,6 @@
 import Header from '../components/common/Header';
 import TodoAddForm from '../components/todo/components/TodoAddForm';
+import TodoList from '../components/todo/components/TodoList';
 import TodosProvider from '../context/todo/TodosProvider';
 
 const TodoPage = () => {
@@ -13,6 +14,9 @@ const TodoPage = () => {
           <div className='flex h-full w-1/2 flex-col max-md:w-full'>
             <div className='px-4'>
               <TodoAddForm />
+            </div>
+            <div className='relative mt-4 flex-1 overflow-y-scroll'>
+              <TodoList />
             </div>
           </div>
         </div>
