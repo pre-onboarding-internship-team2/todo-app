@@ -35,7 +35,7 @@ npm start
 | 스타일 | TailwindCss | - 직관적이고 별도의 클래스 네이밍이 불필요해 편리함 <br /> - 다른 파일로 이동할 필요없이 코드 수정이 용이 |
 | 라우팅 처리 | react-router | |
 | 비동기 통신 | axios| - axios의 instance 기능을 활용하여 공통적으로 사용되는 옵션들을 정리 및 조건에 따른 재사용성 <br /> - 비동기적 HTTP 통신 방법으로 response 데이터를 다룰 수 있으며 Promise 객체화 가능 <br /> - HTTP Requests Intercept 가능|
-| 상태 관리 | Context API |프로젝트 전역 변수 관리 가능|
+| 상태 관리 | Context API | - 프로젝트 전역 변수 관리 가능|
 | 코드 포매팅 | ESLint | |
 | 배포 | AWS(S3) | - AWS와 Github Action을 활용해 CI/CD 구축 |
 | 기타 | react-hot-toast | - 다른 기능을 블록시키는 alert창에 비해 블록을 시키지 않으며 전역에서 호출할 수 있어 편리 |
