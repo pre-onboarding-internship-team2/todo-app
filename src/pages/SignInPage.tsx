@@ -1,4 +1,5 @@
 import { FormEvent, useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { signin } from '../apis/auth';
 import EmailInput from '../components/auth/components/EmailInput';
 import PasswordInput from '../components/auth/components/PasswordInput';
@@ -49,12 +50,12 @@ const SignInPage = () => {
             >
               로그인
             </button>
-            <a
+            <Link
               className='inline-block align-baseline text-sm font-bold text-blue-500 hover:text-blue-800'
-              href='/signup'
+              to='/signup'
             >
               회원이 아니신가요?
-            </a>
+            </Link>
           </div>
         </form>
       </div>

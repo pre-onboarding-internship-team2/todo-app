@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { signup } from '../apis/auth';
 import EmailInput from '../components/auth/components/EmailInput';
 import PasswordInput from '../components/auth/components/PasswordInput';
@@ -52,12 +52,12 @@ const SignUpPage = () => {
             >
               가입하기
             </button>
-            <a
+            <Link
               className='inline-block align-baseline text-sm font-bold text-blue-500 hover:text-blue-800'
-              href='/signin'
+              to='/signin'
             >
               이미 회원이신가요?
-            </a>
+            </Link>
           </div>
         </form>
       </div>
