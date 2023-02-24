@@ -1,6 +1,24 @@
+import { useToDos } from "../../context/todo";
+
+
 function TodoHead() {
+    const { toDos } = useToDos();
+    const undoneTasks = toDos.filter(todo => !todo.isCompleted);
+
+    const today = new Date();
+    const dateString = today.toLocaleDateString('ko-KR', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+    const dayName = today.toLocaleDateString('ko-KR', {weekday: 'long'});
+
     return(
-        <h2>To Do Head</h2>
+        <div>
+            <h1>{dateString}</h1>
+            <div>{dayName}</div>
+            <div>할 일 {undoneTasks.length}개 남음</div>
+        </div>
     );
 };
 
