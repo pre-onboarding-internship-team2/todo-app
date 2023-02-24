@@ -19,10 +19,10 @@ export const tokenApi = axios.create({
 
 tokenApi.interceptors.request.use(
   (config) => {
-    const access_token = storage.get('access_token');
+    const accessToken = storage.get('access_token');
 
-    if (access_token && config.headers) {
-      config.headers['Authorization'] = `Bearer ${access_token}`;
+    if (accessToken && config.headers) {
+      config.headers['Authorization'] = `Bearer ${accessToken}`;
     }
 
     return config;
