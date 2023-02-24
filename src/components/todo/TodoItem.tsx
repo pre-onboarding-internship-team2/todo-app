@@ -13,7 +13,7 @@ const TodoItem = ( { todo }: { todo : TodoState } ) => {
   const toggleEdit = () => setIsEdit( prev => !prev )
 
   const onClickCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
-    updateTodo({ id: todo.id, todo: todo.todo, isCompleted: e.currentTarget.checked }).then((res) => {console.log(res)})
+    updateTodo({ id: todo.id, todo: todo.todo, isCompleted: e.currentTarget.checked })
   }
 
   const onClickDeleteBtn = () => {
@@ -29,12 +29,12 @@ const TodoItem = ( { todo }: { todo : TodoState } ) => {
 
   return (
     <div className='flex flex-row justify-between'>
-      <div className='flex flex-row'>
-        <CommonInput type="checkbox" onChange={onClickCheckbox} checked={todo.isCompleted} className={'w-fit h-fit'}/>
+      <div className='flex flex-row items-center'>
+        <CommonInput type="checkbox" onChange={onClickCheckbox} checked={todo.isCompleted} className={'w-fit h-fit mb-0 mr-2'}/>
         <p>{todo.todo}</p>
       </div>
       <div>
-        <CommonButton onClick={toggleEdit} className={'w-fit h-fit'}>
+        <CommonButton onClick={toggleEdit} className={'w-fit h-fit mr-2'}>
           <PencilSquareIcon className='w-7 h-7 p-1'></PencilSquareIcon>
         </CommonButton >
         <CommonButton onClick={onClickDeleteBtn} className={'w-fit h-fit'}>

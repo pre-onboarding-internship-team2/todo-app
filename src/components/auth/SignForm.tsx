@@ -18,21 +18,12 @@ const SignForm : React.FC<AuthProps> = ( {pageType} ) => {
   const [password, setPassword] = useState<string>('');
   const [disabled, setDisabled] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string>('');
-  
-  // const validation = (email: string, password: string): boolean => {
-  //   if(!email.includes('@'))setErrorMsg('이메일 형식이 올바르지 않습니다.')
-  //   else if(password.length < 8)setErrorMsg('비밀번호는 최소 8자 이상이어야 합니다.')
-  //   if(email.includes('@') && password.length > 7 ) setErrorMsg('')
-  //   if(email.length === 0 && password.length === 0) setErrorMsg('')
-
-  //   return email.includes('@') && password.length > 7 ? false : true
-  // }
 
   const onSubmitForm = (e: React.FormEvent<HTMLFormElement>): void  => {
     e.preventDefault();
     if(pageType === 'signin'){
       signin({ email, password })
-      .then((data) => saveToken(data.accessToken) )
+      .then((data) => saveToken(data.accessToken))
       .catch((err) => setErrorMsg(err))
     }
     else if( pageType === 'signup'){
@@ -58,7 +49,7 @@ const SignForm : React.FC<AuthProps> = ( {pageType} ) => {
         <CommonInput type="password" value={password} placeholder='Password' onChange={(e) => setPassword(e.target.value)} required/>
         {errorMsg && <p className='text-rose-500 my-1.5 font-semibold'>{errorMsg}</p>}
 
-        <CommonButton disabled={disabled} text={pageType === 'signin' ? "로그인" : "회원가입"}/>
+        <CommonButton disabled={disabled}> {pageType === 'signin' ? "로그인" : "회원가입"} </CommonButton>
       </form>
 
       { pageType === 'signin' ? (

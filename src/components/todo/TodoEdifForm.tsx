@@ -20,14 +20,14 @@ const TodoEdifForm = ({ todo, isFinishedEdit } : { todo: TodoState, isFinishedEd
     }
 
     return (
-        <div className='flex flex-row justify-center'>
-            <form onSubmit={onSubmitHander} className='flex flex-row '>
-                <CommonInput type={"text"} onChange={onChangeHandler} value={value} className={'w-4/5 px-2'}></CommonInput>
+        <div className='flex flex-row w-full'>
+            <form onSubmit={onSubmitHander} className='flex flex-row justify-between '>
+                <CommonInput type={"text"} onChange={onChangeHandler} value={value} className={'w-4/5 px-2 mr-2'}></CommonInput>
                 <div className='flex flex-row '>
-                    <CommonButton className={'w-7 h-7'}>
+                    <CommonButton className={'w-fit h-fit  mr-2'}>
                         <CheckCircleIcon className='w-7 h-7'/>
                     </CommonButton>
-                    <CommonButton onClick={() => isFinishedEdit()} className={'w-7 h-7'}>
+                    <CommonButton onClick={() => isFinishedEdit()} className={'w-fit h-fit'}>
                         <XCircleIcon className='w-7 h-7'/>
                     </CommonButton>
                 </div>
