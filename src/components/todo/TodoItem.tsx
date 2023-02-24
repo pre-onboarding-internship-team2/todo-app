@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MdDone, MdDelete, MdEdit, MdCancel } from "react-icons/md";
 import { TodoProps } from "../../apis/todo/todo.types";
-import { useToDos } from "../../context/todo";
+import { useToDos } from "../../hooks/useAuth";
 
 function TodoItem( todoItem: TodoProps) {
     const { id, todo, isCompleted } = todoItem;

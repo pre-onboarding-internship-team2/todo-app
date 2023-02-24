@@ -14,7 +14,7 @@ interface TodoContextProps {
     deleteToDo: (props: DeleteTodoRequestProps) => void;
 }
 
-const TodoContext = createContext<TodoContextProps>(
+export const TodoContext = createContext<TodoContextProps>(
     { toDos: [], createToDo: () => {}, updateToDo: () => {}, deleteToDo: () => {}}
 );
 
@@ -56,10 +56,3 @@ export function TodoProvider({ children } : { children: ReactNode }) {
     );
 };
 
-export function useToDos() {
-    const context = useContext(TodoContext);
-    if (!context) {
-        throw new Error("Cannot find TodoProvider");
-    }
-    return context;
-}

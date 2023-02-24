@@ -1,5 +1,5 @@
 import { useNavigate, Link } from "react-router-dom";
-import { useAuth } from "../../context/auth";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function Home(){
     

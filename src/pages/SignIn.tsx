@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import Sign from "../components/auth/components/Sign";
-import { useAuth } from "../context/auth";
+import { useAuth } from "../hooks/useAuth";
 
 function SignIn(){
     const auth = useAuth();

@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useAuth } from "./context/auth";
+import { useAuth } from "./hooks/useAuth";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Todo from "./pages/Todo";

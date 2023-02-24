@@ -10,7 +10,7 @@ interface AuthContextProps {
     signOut: (callback: VoidFunction) => void;
 }
 
-const AuthContext = createContext<AuthContextProps>(
+export const AuthContext = createContext<AuthContextProps>(
     { authInfo: null, signUp: () => {}, signIn: () => {}, signOut: () => {}}
 );
 
@@ -75,10 +75,3 @@ export function AuthProvider({ children } : { children: ReactNode}) {
     );
 }
 
-export function useAuth() {
-    const context = useContext(AuthContext);
-    if (!context) {
-        throw new Error("Cannot find AuthProvider");
-    }
-    return context;
-}

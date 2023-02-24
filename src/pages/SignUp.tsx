@@ -1,7 +1,7 @@
 import Sign from "../components/auth/components/Sign";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { useAuth } from "../context/auth";
+import { useAuth } from "../hooks/useAuth";
 
 function SignUp(){
     const auth = useAuth();
