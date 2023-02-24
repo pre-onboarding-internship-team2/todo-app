@@ -1,6 +1,9 @@
 import { useState, useContext } from 'react';
 import TodosContext from 'context/todo/TodoContext';
 import { TodoState } from 'apis/todo/todoApi.type';
+import CommonInput from 'components/common/CommonInput';
+import CommonButton from 'components/common/CommonButton';
+import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 
 const TodoEdifForm = ({ todo, isFinishedEdit } : { todo: TodoState, isFinishedEdit: () => void } ) => {
     const [value, setValue] = useState<string>(todo.todo);
@@ -17,13 +20,19 @@ const TodoEdifForm = ({ todo, isFinishedEdit } : { todo: TodoState, isFinishedEd
     }
 
     return (
-        <>
-            <form onSubmit={onSubmitHander}>
-                <input onChange={onChangeHandler} value={value}/>
-                <button>완료</button>
+        <div className='flex flex-row justify-center'>
+            <form onSubmit={onSubmitHander} className='flex flex-row '>
+                <CommonInput type={"text"} onChange={onChangeHandler} value={value} className={'w-4/5 px-2'}></CommonInput>
+                <div className='flex flex-row '>
+                    <CommonButton className={'w-7 h-7'}>
+                        <CheckCircleIcon className='w-7 h-7'/>
+                    </CommonButton>
+                    <CommonButton onClick={() => isFinishedEdit()} className={'w-7 h-7'}>
+                        <XCircleIcon className='w-7 h-7'/>
+                    </CommonButton>
+                </div>
             </form>
-            <button onClick={() => isFinishedEdit()}>취소</button>
-        </>
+        </div>
     )
 }
 
