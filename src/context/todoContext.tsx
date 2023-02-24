@@ -13,6 +13,7 @@ import {
   fetchUpdateTodo,
 } from "apis/todo/todo";
 import { TodoContextProps } from "./todoContext.type";
+import { handleError } from "utils";
 
 const TodoContext = createContext<TodoContextProps>(null!);
 
@@ -20,23 +21,39 @@ export function TodoProvider({ children }: { children: ReactNode }) {
   const [todos, setTodos] = useState<TodoProps[]>([]);
 
   const refreshTodos = async () => {
-    const response = await fetchGetTodos();
-    setTodos(response.data);
+    try {
+      const response = await fetchGetTodos();
+      setTodos(response.data);
+    } catch (error) {
+      handleError(error);
+    }
   };
 
   const createTodo: TodoContextProps["createTodo"] = async (props) => {
-    await fetchCreateTodo(props);
-    refreshTodos();
+    try {
+      await fetchCreateTodo(props);
+      refreshTodos();
+    } catch (error) {
+      handleError(error);
+    }
   };
 
   const updateTodo: TodoContextProps["updateTodo"] = async (props) => {
-    await fetchUpdateTodo(props);
-    refreshTodos();
+    try {
+      await fetchUpdateTodo(props);
+      refreshTodos();
+    } catch (error) {
+      handleError(error);
+    }
   };
 
   const deleteTodo: TodoContextProps["deleteTodo"] = async (props) => {
-    await fetchDeleteTodo(props);
-    refreshTodos();
+    try {
+      await fetchDeleteTodo(props);
+      refreshTodos();
+    } catch (error) {
+      handleError(error);
+    }
   };
 
   useEffect(() => {

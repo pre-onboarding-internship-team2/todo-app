@@ -7,6 +7,7 @@ export default function TodoAddForm() {
 
   const handleSubmitCreateTodo = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (value.length <= 0) return;
     createTodo({ todo: value });
     setValue("");
   };

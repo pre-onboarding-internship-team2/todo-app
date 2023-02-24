@@ -10,7 +10,9 @@ instance.interceptors.request.use((config) => {
   const token = storage.get("access_token");
 
   if (!token) {
-    return Promise.reject(new Error("no token"));
+    return Promise.reject(
+      new Error("인증되지 않은 접근입니다.\n다시 로그인해주세요.")
+    );
   }
 
   return {
