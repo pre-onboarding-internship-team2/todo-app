@@ -7,7 +7,7 @@ export async function createTodoRequest(todo: TodoState["todo"]): Promise<TodoSt
     return new Promise((resolve, reject) => {
         todoCreateInstance(todo)
         .then( (res: AxiosResponse) => { 
-            resolve(res.data)
+            resolve(res.data.todo)
         })
         .catch( (error: AxiosError) => {
             reject(error.message)
