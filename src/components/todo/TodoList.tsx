@@ -6,7 +6,7 @@ function TodoList() {
     const { toDos } = useToDos();
 
     return(
-        <div className='flex-1 py-5 px-8 pb-12 overflow-y-auto'>
+        <div className="flex-1 py-6 px-8 pb-12 overflow-y-auto">
             {toDos.map((list) => 
                 <TodoItem 
                     key={list.id}

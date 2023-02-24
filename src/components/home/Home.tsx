@@ -5,8 +5,6 @@ export default function Home(){
     
     let { authInfo, signOut } = useAuth();
     let navigate = useNavigate();
-
-    console.log(authInfo);
     
     return (
         <>

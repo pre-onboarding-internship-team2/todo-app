@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MdDone, MdDelete, MdEdit, MdCancel } from 'react-icons/md';
+import { MdDone, MdDelete, MdEdit, MdCancel } from "react-icons/md";
 import { TodoProps } from "../../apis/todo/todo.types";
 import { useToDos } from "../../context/todo";
 
@@ -26,18 +26,18 @@ function TodoItem( todoItem: TodoProps) {
             </div>
             { toggle ? (
                 <>
-                    <input className='p-3 rounded border-2 border-slate-200 w-128 box-border text-base'
+                    <input className="p-3 rounded border-2 border-slate-200 w-128 box-border text-base"
                         data-testid="modify-input"
                         defaultValue={todoItem.todo}
                         autoFocus
                         onChange={(e)=>setEditText(e.target.value)}>
                     </input>
-                    <button className='flex items-center justify-center text-blue-1 text-xl cursor-pointer hover:text-gray-2'
+                    <button className="flex items-center justify-center text-blue-1 text-xl cursor-pointer hover:text-gray-2"
                         data-testid="submit-button"
                         onClick={handleEdit}>
                         <MdDone/>
                     </button>
-                    <button className='flex items-center justify-center text-blue-1 text-xl cursor-pointer hover:text-gray-2'
+                    <button className="flex items-center justify-center text-blue-1 text-xl cursor-pointer hover:text-gray-2"
                         data-testid="cancel-button"
                         onClick={() => setToggle(!toggle)}>
                         <MdCancel />
@@ -45,15 +45,15 @@ function TodoItem( todoItem: TodoProps) {
                 </>
             ) : (
                 <>
-                    <div className='flex-1 text-base'>
+                    <div className="flex-1 text-base">
                         {todo}
                     </div>
-                    <button className='flex items-center justify-center text-blue-1 text-xl cursor-pointer hover:text-gray-2'
+                    <button className="flex items-center justify-center text-blue-1 text-xl cursor-pointer hover:text-gray-2"
                         data-testid="modify-button"
                         onClick={() => setToggle(!toggle)}>
                         <MdEdit />
                     </button>
-                    <button className='flex items-center justify-center text-blue-1 text-xl cursor-pointer hover:text-gray-2'
+                    <button className="flex items-center justify-center text-blue-1 text-xl cursor-pointer hover:text-gray-2"
                         data-testid="delete-button"
                         onClick={() => deleteToDo({id: id})}>
                         <MdDelete />

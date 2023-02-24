@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, ReactNode, useContext } from "react";
-import { AxiosError } from 'axios';
+import { AxiosError } from "axios";
 import { TodoProps } from "../apis/todo/todo.types";
 import { 
     CreateTodoRequestProps, 
@@ -30,7 +30,7 @@ export function TodoProvider({ children } : { children: ReactNode }) {
     };
 
     const createToDo = async (props: CreateTodoRequestProps)  => {
-        createTodoApi(props);
+        await createTodoApi(props);
         getToDo();
     };
     const updateToDo = async (props: UpdateTodoRequestProps) => {
@@ -57,7 +57,7 @@ export function TodoProvider({ children } : { children: ReactNode }) {
 export function useToDos() {
     const context = useContext(TodoContext);
     if (!context) {
-        throw new Error('Cannot find TodoProvider');
+        throw new Error("Cannot find TodoProvider");
     }
     return context;
 }

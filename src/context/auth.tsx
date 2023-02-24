@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, ReactNode, useContext } from "react";
-import { AxiosError } from 'axios';
+import { AxiosError } from "axios";
 import { signUpApi, signInApi } from "../apis/auth/auth";
 import { AuthRequestProps } from "../apis/auth/auth.types";
 
@@ -28,12 +28,12 @@ export function AuthProvider({ children } : { children: ReactNode}) {
             const status = err.response?.status;
             let msg: string;
             if (status === 401) {
-                msg = '잘못된 비밀번호 입니다.';
+                msg = "잘못된 비밀번호 입니다.";
             } else if (status === 404) {
-              msg = '존재하지 않는 사용자입니다.';
+              msg = "존재하지 않는 사용자입니다.";
             } else {
               msg =
-                '알 수 없는 에러가 발생했습니다. 잠시 후 다시 시도 해 주세요.';
+                "알 수 없는 에러가 발생했습니다. 잠시 후 다시 시도 해 주세요.";
             }
             throw new Error(msg);
         });
@@ -51,10 +51,10 @@ export function AuthProvider({ children } : { children: ReactNode}) {
             const status = err.response?.status;
             let msg: string;
             if (status === 400) {
-                msg = '이미 가입된 사용자 입니다.';
+                msg = "이미 가입된 사용자 입니다.";
               } else {
                 msg =
-                  '알 수 없는 에러가 발생했습니다. 잠시 후 다시 시도 해 주세요.';
+                  "알 수 없는 에러가 발생했습니다. 잠시 후 다시 시도 해 주세요.";
               }
             throw new Error(msg);
         });
@@ -76,7 +76,7 @@ export function AuthProvider({ children } : { children: ReactNode}) {
 export function useAuth() {
     const context = useContext(AuthContext);
     if (!context) {
-        throw new Error('Cannot find AuthProvider');
+        throw new Error("Cannot find AuthProvider");
     }
     return context;
 }

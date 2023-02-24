@@ -11,7 +11,7 @@ function NotFound(){
                     NotFound Page
                 </h2>
                 <h2 className="text-lg font-sans flex justify-center items-center">
-                    Page doesn't exist.
+                    Page doesn"t exist.
                 </h2>
             </div>
             <Link to="/" className="py-3 flex justify-center items-center">
