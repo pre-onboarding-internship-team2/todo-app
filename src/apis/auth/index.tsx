@@ -12,7 +12,7 @@ export async function signin(data: Props): Promise<SignInResponseAuth>{
     return new Promise((resolve, reject) => {
         signInInstance(data.email, data.password)
         .then( (res: AxiosResponse) => { 
-            resolve(res.data.access_token)
+            resolve({accessToken: res.data.access_token})
         })
         .catch( (error: AxiosError) => {
             const status = error.response?.status;
