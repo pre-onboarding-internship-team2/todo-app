@@ -3,11 +3,7 @@ import { AuthRequest, AuthResponse } from './auth.types';
 
 export async function signin(data: AuthRequest): Promise<AuthResponse> {
   return apiClient
-    .post('/auth/signin', data, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    .post('/auth/signin', data)
     .then((data) => {
       const accessToken = data.data.access_token;
       localStorage.setItem('user', accessToken);
@@ -31,11 +27,7 @@ export async function signin(data: AuthRequest): Promise<AuthResponse> {
 
 export async function signup(data: AuthRequest): Promise<null> {
   return apiClient
-    .post('/auth/signup', data, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    .post('/auth/signup', data)
     .then((data) => data.data)
     .catch((err) => {
       const status = err.response?.status;
