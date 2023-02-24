@@ -7,7 +7,7 @@ interface Iprops {
 
 export default function Button({ type, text, disabled, testId }: Iprops) {
   return (
-    <button className="btn-primary btn" type={type} disabled={disabled} data-testid={testId}>
+    <button className="btn" type={type} disabled={disabled} data-testid={testId}>
       {text}
     </button>
   );
