@@ -21,7 +21,13 @@ module.exports = {
           2:'#A8A29E',
           3: '#6B7280',
         },
-        red: '#EF4444',
+        red: {
+          1: '#ff6b6b',
+          2: '#EF4444',
+        },
+        blue: {
+          1: '#dee2e6',
+        }
       },
       fontFamily: {
         sans: ['Poppins', 'Arial', 'sans-serif'],
