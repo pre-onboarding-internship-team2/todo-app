@@ -1,12 +1,14 @@
 import { useTodo } from "context/todoContext";
 import { useEffect, useState } from "react";
-import { TodoProps } from "./type";
+import { TodoProps } from "./TodoItem.type";
 
-export default function TodoEditForm(props: {
+export default function TodoEditForm({
+  editTodoItem,
+  setEditTodoItem,
+}: {
   editTodoItem: TodoProps;
   setEditTodoItem: React.Dispatch<React.SetStateAction<TodoProps | null>>;
 }) {
-  const { editTodoItem, setEditTodoItem } = props;
   const [value, setValue] = useState("");
   const { updateTodo } = useTodo();
 
@@ -15,7 +17,6 @@ export default function TodoEditForm(props: {
     if (!editTodoItem) throw new Error("no edit item");
     updateTodo({ ...editTodoItem, todo: value });
     setEditTodoItem(null);
-    setValue("");
   };
 
   useEffect(() => {

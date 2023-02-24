@@ -2,7 +2,7 @@ import { useTodo } from "context/todoContext";
 import { useState } from "react";
 import TodoEditForm from "./TodoEditForm";
 import TodoItem from "./TodoItem";
-import { TodoProps } from "./type";
+import { TodoProps } from "./TodoItem.type";
 
 export default function TodoList() {
   const { todos } = useTodo();

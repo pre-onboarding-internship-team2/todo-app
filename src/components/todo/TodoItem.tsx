@@ -1,5 +1,5 @@
 import { useTodo } from "context/todoContext";
-import { TodoProps } from "./type";
+import { TodoProps } from "./TodoItem.type";
 
 export default function TodoItem(props: {
   item: TodoProps;

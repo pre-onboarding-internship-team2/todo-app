@@ -3,7 +3,7 @@ import {
   DeleteTodoRequestProps,
   UpdateTodoRequestProps,
 } from "apis/todo/todo.type";
-import { TodoProps } from "components/todo/type";
+import { TodoProps } from "components/todo/TodoItem.type";
 
 export type TodoContextProps = {
   todos: TodoProps[];

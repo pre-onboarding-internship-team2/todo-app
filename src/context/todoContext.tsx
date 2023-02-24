@@ -1,4 +1,4 @@
-import { TodoProps } from "components/todo/type";
+import { TodoProps } from "components/todo/TodoItem.type";
 import {
   createContext,
   ReactNode,
