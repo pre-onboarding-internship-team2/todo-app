@@ -68,5 +68,6 @@ export function TodoProvider({ children }: { children: ReactNode }) {
 }
 
 export function useTodo() {
+  if (!TodoContext) throw new Error("no AuthContext");
   return useContext(TodoContext);
 }
