@@ -16,7 +16,7 @@ function TodoProvider({ children }: { children: React.ReactNode }) {
       renderTodos();
     };
 
-    const updateTodo = async (todo: TodoState) => {
+    const updateTodo = async (todo: Pick<TodoState, 'id' | 'todo' | 'isCompleted'>) => {
       await updateTodoRequest( todo.id, todo.todo, todo.isCompleted );
       renderTodos();
     };
