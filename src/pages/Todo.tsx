@@ -9,7 +9,7 @@ function Todo(){
         <TodoProvider>
             <div className="flex flex-col m-5 justify-center items-center">
                 <Link to="/" replace>
-                    <button className="w-28 absolute right-6 bg-green-1 text-white my-0.5 w-60 text-base py-2 rounded-2xl hover:bg-green-2">
+                    <button className="w-32 absolute right-6 bg-green-1 text-white my-0.5 text-base py-2 rounded-2xl hover:bg-green-2">
                         Home
                     </button>
                 </Link>

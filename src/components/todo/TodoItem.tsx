@@ -19,15 +19,14 @@ function TodoItem( todoItem: TodoProps) {
     }
 
     return(
-        <li className="flex items-center px-3">
-            <div className="flex items-center justify-center mr-5 cursor-pointer w-8 h-8 rounded-md border-solid font-sm"
+        <li className="flex items-center px-3 py-1.5">
+            <div className="border-2 flex items-center justify-center mr-5 cursor-pointer w-10 h-10 rounded-full border-solid text-lg"
                 onClick={() => updateToDo({...todoItem, isCompleted: !isCompleted})}>
-                {/* {todoItem.isCompleted && <MdDone/>} */}
                 {isCompleted && <MdDone/>}
             </div>
             { toggle ? (
                 <>
-                    <input className='p-3 rounded border-2 border-slate-200 w-128 box-border'
+                    <input className='p-3 rounded border-2 border-slate-200 w-128 box-border text-base'
                         data-testid="modify-input"
                         defaultValue={todoItem.todo}
                         autoFocus
