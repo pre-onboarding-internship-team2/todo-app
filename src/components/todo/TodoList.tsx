@@ -1,4 +1,6 @@
 import { useToDos } from "../../context/todo";
+import TodoItem from "./TodoItem";
+
 
 function TodoList() {
     const { toDos } = useToDos();
@@ -6,10 +8,13 @@ function TodoList() {
     return(
         <div className='flex-1 py-5 px-8 pb-12 overflow-y-auto'>
             {toDos.map((list) => 
-                <div 
-                    key={list.id}> 
-                    {list.todo} 
-                </div>)}
+                <TodoItem 
+                    key={list.id}
+                    id={list.id}
+                    todo={list.todo}
+                    isCompleted={list.isCompleted}
+                    userId={list.userId}/>
+            )}
         </div>
     );
 };
