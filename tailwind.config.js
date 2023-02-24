@@ -4,10 +4,10 @@ module.exports = {
   theme: {
     fontSize: {
       sm: '0.8rem',
-      base: '1rem',
-      xl: '1.563rem',
-      xl2: '2rem',
-      xl3: '4rem'
+      base: '1.1rem',
+      lg: '1.563rem',
+      xl: '2rem',
+      xl2: '3rem'
     },
     extend: {
       colors: {
@@ -27,7 +27,13 @@ module.exports = {
         },
         blue: {
           1: '#dee2e6',
-        }
+        },
+        date: {
+          1: '#343a40',
+        },
+        day: {
+          1: '#868e96',
+        },
       },
       fontFamily: {
         sans: ['Poppins', 'Arial', 'sans-serif'],
