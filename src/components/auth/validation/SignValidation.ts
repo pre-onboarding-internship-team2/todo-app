@@ -7,14 +7,12 @@ export default function SignValidation({email, password}: AuthRequestProps): Val
     
     const emailValid = EMAIL_CHECK.test(email)
     const passwordValid = PW_CHECK.test(password);
-
-    const validationResult: ValidationResult = {
+    
+    return {
         valid: Boolean(emailValid && passwordValid),
         message: { 
             email: emailValid ? "": "유효한 이메일 형식이 아닙니다.",
             password: passwordValid ? "": "비밀번호는 8자리 이상이어야 합니다.",
         },
     };
-    
-    return validationResult;
 };
