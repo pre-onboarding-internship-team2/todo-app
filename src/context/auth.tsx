@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, ReactNode, useContext } from "react";
+import { createContext, useState, useEffect, ReactNode } from "react";
 import { AxiosError } from "axios";
 import { signUpApi, signInApi } from "../apis/auth/auth";
 import { AuthRequestProps } from "../apis/auth/auth.types";

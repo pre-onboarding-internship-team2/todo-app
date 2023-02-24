@@ -1,5 +1,4 @@
-import { createContext, useState, useEffect, ReactNode, useContext } from "react";
-import { AxiosError } from "axios";
+import { createContext, useState, useEffect, ReactNode } from "react";
 import { TodoProps } from "../apis/todo/todo.types";
 import { 
     CreateTodoRequestProps, 
