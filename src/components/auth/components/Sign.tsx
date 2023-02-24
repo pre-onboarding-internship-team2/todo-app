@@ -32,29 +32,29 @@ function Sign({submitAction, submitCallback} : {
 
     return (
         <div className="flex justify-center items-center">
-            <form className="flex flex-col align"
+            <form className="flex flex-col items-center"
                     onSubmit={handleSubmit}>
-                <input className="my-1 text-lg p-2"
+                <input className="my-1 text-base p-2"
                     data-testid="email-input" 
                     value={email}
                     type="email"
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Email"/>
-                <input className="my-1 text-lg p-2"
+                <input className="my-1 text-base p-2"
                     data-testid="password-input" 
                     value={password}
                     type="password"
                     onChange={(e) => setPassword(e.target.value)} 
                     placeholder="Password"/>
-                <div className="flex flex-col justify-center items-center">
+                <div className="p-2 flex flex-col justify-center items-center">
                     { validMsg?.email ? 
-                        <h2 className="text-red	text-sm items-center justify-center">{validMsg.email}</h2> 
+                        <h2 className="text-red-1 text-sm items-center justify-center">{validMsg.email}</h2> 
                         : null }
                     { validMsg?.password ? 
-                        <h2 className="text-red	text-sm items-center justify-center">{validMsg.password}</h2> 
+                        <h2 className="text-red-1 text-sm items-center justify-center">{validMsg.password}</h2> 
                         : null }
                 </div>
-                <button className="bg-green-1 text-white my-0.5 w-60 text-lg py-2 rounded-2xl hover:bg-green-2 disabled:bg-gray disabled:cursor-not-allowed"
+                <button className="bg-green-1 text-white my-0.5 w-60 text-base py-2 rounded-2xl hover:bg-green-2 disabled:bg-gray disabled:cursor-not-allowed"
                     data-testid="signin-button"
                     disabled={!isValidForm}
                 >Submit</button>   
