@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SignRequestProps } from "apis/auth/sign.type";
 import InputWithValidation from "./InputWithValidation";
 
@@ -9,21 +9,17 @@ export default function FormWithCallback({
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isValid, setIsValid] = useState(false);
 
   const validationEmail = { exp: /@/, invalidMessage: "@를 포함" };
   const validationPassword = { exp: /.{8,}/, invalidMessage: "8자 이상" };
+
+  const isValid =
+    validationEmail.exp.test(email) && validationPassword.exp.test(password);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     submitCallback({ email, password });
   };
-
-  useEffect(() => {
-    setIsValid(
-      validationEmail.exp.test(email) && validationPassword.exp.test(password)
-    );
-  }, [email, password]);
 
   return (
     <>
